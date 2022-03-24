@@ -6,3 +6,6 @@ class Game(object):
 
     def get_size(self) -> int:
         return self.size
+
+    def get_cell(self, x:int , y:int) -> bool:
+        return False

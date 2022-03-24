@@ -17,6 +17,11 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(game.get_size(), 3)
 
+    def test_a_vale_of_a_cell_when_game_start_is_died(self):
+        game = Game(3)
+
+        self.assertEqual(game.get_cell(1, 1), False)
+
 
 if __name__ == '__main__':
     unittest.main()
