@@ -1,9 +1,10 @@
-import unittest
+from unittest import TestCase
 
 from game import Game
 
 
-class MyTestCase(unittest.TestCase):
+class TestGame(TestCase):
+
     def test_something(self):
         self.assertEqual(True, True)
 
@@ -21,7 +22,3 @@ class MyTestCase(unittest.TestCase):
         game = Game(3)
 
         self.assertEqual(game.get_cell(1, 1), False)
-
-
-if __name__ == '__main__':
-    unittest.main()
