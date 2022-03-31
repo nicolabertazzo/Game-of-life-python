@@ -22,3 +22,13 @@ class TestGame(TestCase):
         game = Game(3)
 
         self.assertEqual(game.get_cell(1, 1), False)
+
+    def test_set_a_vale_of_a_cell_and_get_the_value(self):
+        game = Game(3)
+        game.set_cell(1, 1, True)
+        self.assertEqual(game.get_cell(1, 1), True)
+
+    def test_initialize_game_manually_with_a_matrix(self):
+        initial_matrix = [[True, True, True], [False, False, False], [False, False, False]]
+        game = Game(sizeX=3, initial_matrix=initial_matrix)
+        self.assertTrue(game.get_cell(0, 0))
