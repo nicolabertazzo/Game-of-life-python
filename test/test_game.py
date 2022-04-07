@@ -32,3 +32,9 @@ class TestGame(TestCase):
         initial_matrix = [[True, True, True], [False, False, False], [False, False, False]]
         game = Game(sizeX=3, initial_matrix=initial_matrix)
         self.assertTrue(game.get_cell(0, 0))
+
+    def test_sizeX_and_sizeY_manually_set(self):
+        game = Game(sizeX=3, sizeY=4)
+
+        self.assertEqual(3, game.get_sizeX())
+        self.assertEqual(4, game.get_sizeY())
