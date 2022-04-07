@@ -31,3 +31,11 @@ class Game(object):
 
     def get_size_y(self):
         return self.size_y
+
+    def next_status(self):
+        #TODO DO ME
+        # matrix_snapshot = self.matrix.copy()
+
+        # for x in range(self.size_x):
+        #     for y in range(self.size_y):
+        self.matrix[1][1] = False
