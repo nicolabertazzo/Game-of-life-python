@@ -5,19 +5,6 @@ from game import Game
 
 class TestGame(TestCase):
 
-    def test_something(self):
-        self.assertEqual(True, True)
-
-    def test_check_environment_size_of_two(self):
-        game = Game(2)
-
-        self.assertEqual(game.get_size(), 2)
-
-    def test_check_environment_size_of_three(self):
-        game = Game(3)
-
-        self.assertEqual(game.get_size(), 3)
-
     def test_a_vale_of_a_cell_when_game_start_is_died(self):
         game = Game(3)
 
@@ -30,11 +17,17 @@ class TestGame(TestCase):
 
     def test_initialize_game_manually_with_a_matrix(self):
         initial_matrix = [[True, True, True], [False, False, False], [False, False, False]]
-        game = Game(sizeX=3, initial_matrix=initial_matrix)
+        game = Game(size_x=3, initial_matrix=initial_matrix)
         self.assertTrue(game.get_cell(0, 0))
 
     def test_sizeX_and_sizeY_manually_set(self):
-        game = Game(sizeX=3, sizeY=4)
+        game = Game(size_x=3, size_y=4)
 
-        self.assertEqual(3, game.get_sizeX())
-        self.assertEqual(4, game.get_sizeY())
+        self.assertEqual(3, game.get_size_x())
+        self.assertEqual(4, game.get_size_y())
+
+    def test_only_sizeX_manually_set(self):
+        game = Game(size_x=3)
+
+        self.assertEqual(3, game.get_size_x())
+        self.assertEqual(3, game.get_size_y())
