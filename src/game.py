@@ -38,6 +38,7 @@ class Game(object):
         for x in range(self.size_x):
             for y in range(self.size_y):
                 num_of_neighbours = self.get_num_of_alive_neighbours(matrix_snapshot, x, y)
+                # TODO: refactor with underpopulation_rule
                 if num_of_neighbours < 2:
                     self.matrix[x][y] = False;
 

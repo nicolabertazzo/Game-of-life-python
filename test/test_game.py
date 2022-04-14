@@ -56,3 +56,27 @@ class TestGame(TestCase):
         game.next_status()
 
         self.assertFalse(game.get_cell(1, 2))
+
+    def test_underpopulation_rule_with_alive_on_corner_and_no_neighbours(self):
+        initial_matrix = [
+            [True, False, False],
+            [False, False, False],
+            [False, False, False]
+        ]
+        game = Game(size_x=3, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertFalse(game.get_cell(0, 0))
+
+    def test_underpopulation_rule_with_alive_neighbours(self):
+        initial_matrix = [
+            [True, False, True],
+            [False, True, False],
+            [False, False, False]
+        ]
+        game = Game(size_x=3, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertTrue(game.get_cell(1, 1))
