@@ -45,15 +45,14 @@ class Game(object):
         num_of_neighbours = 0;
         for i in [-1, 0, 1]:
             for j in [-1, 0, 1]:
-                n_x = x + i
-                n_y = y + j
-                if self._neighbours_x_y_is_on_range(n_x, n_y) and self._neighbours_x_y_is_not_itself(i, j):
-                    if matrix_snapshot[n_x][n_y]:
+                if self._neighbours_x_y_is_on_range(x + i, y + i) and self._neighbours_x_y_is_not_itself(i, j):
+                    if matrix_snapshot[x + i][y + i]:
                         num_of_neighbours += 1
         return num_of_neighbours
 
     def _neighbours_x_y_is_on_range(self, n_x, n_y) -> bool:
-        return n_x > 0 and n_y > 0 and n_x < self.size_x and n_y < self.size_y
+        return 0 <= n_x < self.size_x and 0 <= n_y < self.size_y
 
-    def _neighbours_x_y_is_not_itself(self, i, j) -> bool:
+    @staticmethod
+    def _neighbours_x_y_is_not_itself(i, j) -> bool:
         return i != 0 and j != 0
