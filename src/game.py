@@ -33,9 +33,27 @@ class Game(object):
         return self.size_y
 
     def next_status(self):
-        #TODO DO ME
-        # matrix_snapshot = self.matrix.copy()
+        matrix_snapshot = self.matrix.copy()
 
-        # for x in range(self.size_x):
-        #     for y in range(self.size_y):
-        self.matrix[1][1] = False
+        for x in range(self.size_x):
+            for y in range(self.size_y):
+                num_of_neighbours = self.get_num_of_alive_neighbours(matrix_snapshot, x, y)
+                if num_of_neighbours < 2:
+                    self.matrix[x][y] = False;
+
+    def get_num_of_alive_neighbours(self, matrix_snapshot, x, y):
+        num_of_neighbours = 0;
+        for i in [-1, 0, 1]:
+            for j in [-1, 0, 1]:
+                n_x = x + i
+                n_y = y + j
+                if self._neighbours_x_y_is_on_range(n_x, n_y) and self._neighbours_x_y_is_not_itself(i, j):
+                    if matrix_snapshot[n_x][n_y]:
+                        num_of_neighbours += 1
+        return num_of_neighbours
+
+    def _neighbours_x_y_is_on_range(self, n_x, n_y) -> bool:
+        return n_x > 0 and n_y > 0 and n_x < self.size_x and n_y < self.size_y
+
+    def _neighbours_x_y_is_not_itself(self, i, j) -> bool:
+        return i != 0 and j != 0

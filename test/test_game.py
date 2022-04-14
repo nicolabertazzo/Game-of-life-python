@@ -32,10 +32,27 @@ class TestGame(TestCase):
         self.assertEqual(3, game.get_size_x())
         self.assertEqual(3, game.get_size_y())
 
-    def test_underpopulation_rule_no_neighbours(self):
-        initial_matrix = [[False, False, False], [False, True, False], [False, False, False]]
+    def test_underpopulation_rule_no_neighbours_size_3(self):
+        initial_matrix = [
+            [False, False, False],
+            [False, True,  False],
+            [False, False, False]
+        ]
         game = Game(size_x=3, initial_matrix=initial_matrix)
 
         game.next_status()
 
         self.assertFalse(game.get_cell(1, 1))
+
+    def test_underpopulation_rule_no_neighbours_size_4(self):
+        initial_matrix = [
+            [False, False, False, False],
+            [False, False, True,  False],
+            [False, False, False, False],
+            [False, False, False, False]
+        ]
+        game = Game(size_x=4, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertFalse(game.get_cell(1, 2))
