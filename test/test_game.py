@@ -5,12 +5,12 @@ from game import Game
 
 class TestGame(TestCase):
 
-    def test_a_vale_of_a_cell_when_game_start_is_died(self):
+    def test_a_value_of_a_cell_when_game_start_is_died(self):
         game = Game(3)
 
         self.assertEqual(game.get_cell(1, 1), False)
 
-    def test_set_a_vale_of_a_cell_and_get_the_value(self):
+    def test_set_a_value_of_a_cell_and_get_the_value(self):
         game = Game(3)
         game.set_cell(1, 1, True)
         self.assertEqual(game.get_cell(1, 1), True)
@@ -80,3 +80,16 @@ class TestGame(TestCase):
         game.next_status()
 
         self.assertTrue(game.get_cell(1, 1))
+
+    def test_overcrowding_rule_four_neighbours_size_3(self):
+        initial_matrix = [
+            [True, False, True],
+            [False, True,  True],
+            [False, True, False]
+        ]
+        game = Game(size_x=3, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertFalse(game.get_cell(1, 1))
+
