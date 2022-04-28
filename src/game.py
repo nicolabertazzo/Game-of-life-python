@@ -46,6 +46,13 @@ class Game(object):
                 if num_of_neighbours == 3:
                     self.matrix[x][y] = True
 
+    def pretty_print(self):
+        for x in range(self.size_x):
+            for y in range(self.size_y):
+                print("O" if self.matrix[x][y] else "X", end="")
+            print()
+        print()
+
     def matrix_deep_copy(self) -> List[List[bool]]:
 
         matrix_snapshot = [[False for x in range(self.size_x)] for y in range(self.size_y)]
