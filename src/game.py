@@ -43,6 +43,8 @@ class Game(object):
                     self.matrix[x][y] = False
                 if num_of_neighbours > 3:
                     self.matrix[x][y] = False
+                if num_of_neighbours == 3:
+                    self.matrix[x][y] = True
 
     def matrix_deep_copy(self) -> List[List[bool]]:
 

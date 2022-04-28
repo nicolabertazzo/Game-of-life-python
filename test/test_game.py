@@ -116,3 +116,27 @@ class TestGame(TestCase):
         game.next_status()
 
         self.assertTrue(game.get_cell(0, 2))
+
+    def test_born_to_live(self):
+        initial_matrix = [
+            [True, False, True],
+            [False, False, True],
+            [False, False, False]
+        ]
+        game = Game(size_x=3, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertTrue(game.get_cell(1, 1))
+
+    def test_born_to_live_on_matrix_edge(self):
+        initial_matrix = [
+            [True, False, True],
+            [False, True, True],
+            [False, True, False]
+        ]
+        game = Game(size_x=3, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertTrue(game.get_cell(2, 2))
