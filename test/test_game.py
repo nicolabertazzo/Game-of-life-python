@@ -35,7 +35,7 @@ class TestGame(TestCase):
     def test_underpopulation_rule_no_neighbours_size_3(self):
         initial_matrix = [
             [False, False, False],
-            [False, True,  False],
+            [False, True, False],
             [False, False, False]
         ]
         game = Game(size_x=3, initial_matrix=initial_matrix)
@@ -47,7 +47,7 @@ class TestGame(TestCase):
     def test_underpopulation_rule_no_neighbours_size_4(self):
         initial_matrix = [
             [False, False, False, False],
-            [False, False, True,  False],
+            [False, False, True, False],
             [False, False, False, False],
             [False, False, False, False]
         ]
@@ -84,7 +84,7 @@ class TestGame(TestCase):
     def test_overcrowding_rule_four_neighbours_size_3(self):
         initial_matrix = [
             [True, False, True],
-            [False, True,  True],
+            [False, True, True],
             [False, True, False]
         ]
         game = Game(size_x=3, initial_matrix=initial_matrix)
@@ -93,3 +93,26 @@ class TestGame(TestCase):
 
         self.assertFalse(game.get_cell(1, 1))
 
+    def test_continuing_to_live_rule_three_neighbours_size_3(self):
+        initial_matrix = [
+            [True, False, False],
+            [False, True, True],
+            [False, True, False]
+        ]
+        game = Game(size_x=3, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertTrue(game.get_cell(1, 1))
+
+    def test_continuing_to_live_rule_three_neighbours_size_3_on_matrix_edge(self):
+        initial_matrix = [
+            [True, False, True],
+            [False, True, True],
+            [False, True, False]
+        ]
+        game = Game(size_x=3, initial_matrix=initial_matrix)
+
+        game.next_status()
+
+        self.assertTrue(game.get_cell(0, 2))
